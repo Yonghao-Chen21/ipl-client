@@ -1,0 +1,82 @@
+<div class="row mt-2">
+    <div class="col-md-8">
+        <div *ngIf="contacts.length > 0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>City</th>
+                        <th>Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ele of contacts;index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{ele.name}}</td>
+                        <td>{{ele.email}}</td>
+                        <td>{{ele.mobile}}</td>
+                        <td>{{ele.city}}</td>
+                        <td><i class="fa fa-edit" (click)="editContact(ele)"></i> | <i class="fa fa-trash"
+                                (click)="deleteContact(ele.email)"></i> </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div *ngIf="contacts.length == 0">
+            <p>No contact were found or not yet added. Please add contacts</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Contact</h2>
+        <div [formGroup]="contact">
+            <div class="mb-3 mt-3">
+                <label for="name" class="form-label">Name: </label>
+                <input id="street" type="text" formControlName="name" class="form-control">
+                <span class="text-danger" *ngIf="(submitted  || f['name'].touched) && f['name'].errors">
+                    Name is required
+                </span>
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="email" class="form-label">Email: </label>
+                <div *ngIf="statusFlag">
+                    <input id="email" type="text" formControlName="email" class="form-control">
+                    <span class="text-danger" *ngIf="(submitted  || f['email'].touched) && f['email'].errors">
+                        Email is required
+                    </span>
+                </div>
+                <div *ngIf="!statusFlag">
+                    <input id="email" type="text" formControlName="email" class="form-control" readonly>
+                </div>
+
+            </div>
+
+            <div class="mb-3 mt-3">
+                <label for="mobile" class="form-label">Mobile: </label>
+                <input id="mobile" type="text" formControlName="mobile" class="form-control">
+                <span class="text-danger" *ngIf="(submitted  || f['mobile'].touched) && f['mobile'].errors">
+                    Mobile is required
+                </span>
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="city" class="form-label">City: </label>
+                <input id="city" type="text" formControlName="city" class="form-control">
+            </div>
+            <div class="mb-3 mt-3">
+                <div *ngIf="statusFlag">
+                    <button class="btn btn-primary" type="submit" (click)="addContact()"
+                        [disabled]="contact.invalid">Add New Contact</button>
+                </div>
+                <div *ngIf="!statusFlag">
+                    <button class="btn btn-primary" type="submit" (click)="updateContact()"
+                        [disabled]="contact.invalid">Update Contact</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>

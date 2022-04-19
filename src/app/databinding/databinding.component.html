@@ -1,0 +1,58 @@
+<div class="row mt-2">
+    <div class="col">
+        <h3>Data Binding</h3>
+        <p>
+            {{message}}
+        </p>
+
+        <img [src]="url">
+        <div>
+            <p>
+                <button class="btn btn-primary" (click)="changeStatus()">On/Off</button>
+                Status:{{status}}
+            </p>
+        </div>
+        
+        <div>
+            <input type="text" [(ngModel)]="username">
+            <br/>{{username}}
+
+        </div>
+
+
+    </div>
+    <div class="col">
+        <h3>Angular Directives</h3>
+        <p *ngFor="let course of courses;index as i">
+           {{i+1}}. {{course}}
+        </p>
+        <p *ngIf="status == 'ON'">
+            <img [src]="statusurl">
+        </p>
+    </div>
+    <div class="col">
+        <h3>Angular - Pips</h3>
+        <div *ngIf="employees.length > 0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Doj</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let emp of employees;index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{emp.ename}}</td>
+                        <td>{{emp.doj | date:'fullDate'}}</td>
+                        <td>{{emp.salary | currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    
+</div>

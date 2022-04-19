@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col">
+        <div *ngIf="teamAmountChartData.length > 0">
+            <google-chart [data]="columnChart" (chartSelect)='select($event)'></google-chart>
+        </div>
+        <div *ngIf="roleAmountPieChartData.length > 0">
+            <google-chart [data]="pieChart"></google-chart>
+        </div>
+    </div>
+    <div class="col">
+        <div *ngIf="players.length > 0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ele of players">
+                        <td>{{ele.pid}}</td>
+                        <td>{{ele.name}}</td>
+                        <td>{{ele.role}}</td>
+                        <td>
+                            <p>{{ele.price | currency}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
