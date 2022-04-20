@@ -15,25 +15,22 @@ export class IplstatComponent implements OnInit {
   teamAmountChartData: any[] = []
   roleAmountPieChartData: any[] = []
   players: any[] = []
-  Label:any[] = []
+  Label: any[] = []
   ngOnInit(): void {
     this.loadBarChart()
   }
-  
+
   public select(event: ChartSelectEvent) {
     this.Label = event.selectedRowValues
-    this.roleAmountPieChartData.splice(0,this.roleAmountPieChartData.length)
+    this.roleAmountPieChartData.splice(0, this.roleAmountPieChartData.length)
     this.loadPieChart()
-    this.players.splice(0,this.players.length)
+    this.players.splice(0, this.players.length)
     this.loadPlayers()
   }
 
-  loadPlayers(){
-    this.iplstatService.getPlayers(this.Label[0]).subscribe(data=>{
-      data.forEach(ele => {
+  loadPlayers() {
+    this.iplstatService.getPlayers(this.Label[0]).subscribe(data => {
         this.players = data
-      })
-
     })
   }
 
@@ -58,14 +55,22 @@ export class IplstatComponent implements OnInit {
   public columnChart: GoogleChartInterface = {  // use :any or :GoogleChartInterface
     chartType: 'ColumnChart',
     dataTable: this.teamAmountChartData,
-    options: { title: 'Label' }
+    options: {
+      title: 'Label',
+      'width': 800,
+      'height': 500
+    }
   };
 
   public pieChart: GoogleChartInterface = {
     chartType: GoogleChartType.PieChart,
     dataTable: this.roleAmountPieChartData,
     //firstRowIsData: true,
-    options: { 'title': 'Role' },
+    options: {
+      'title': 'Role',
+      'width': 700,
+      'height': 600
+    },
   }
 
 }
