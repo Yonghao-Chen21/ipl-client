@@ -1,0 +1,14 @@
+<div class="row mt-2">
+
+    <div class="col">
+        
+        <div *ngIf="teamAmountChartData.length > 0">
+            <google-chart [data]="columnChart"></google-chart>
+        </div>
+    </div>
+    <div class="col">
+        <div *ngIf="roleAmountPieChartData.length > 0">
+            <google-chart [data]="pieChart"></google-chart>
+        </div>
+    </div>
+</div>

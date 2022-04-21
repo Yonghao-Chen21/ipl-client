@@ -1,0 +1,56 @@
+<div class="row mt-3">
+    <div class="col">
+        <div>{{roleAmountCount|json}}</div>
+        <div *ngIf="teams.length != 0">
+            <div class="col col-md-8 offset-md-2">
+                <select class="form-select" aria-label="Default select example" (change)="getPlayers(name.value)" #name>
+                    <option selected value="">Select Team Name</option>
+                    <option *ngFor="let team of teams" value={{team.label}}>{{team.label}} - {{team.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm">
+            <div *ngIf="players.length > 0">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ele of players">
+                            <td>{{ele.pid}}</td>
+                            <td>{{ele.name}}</td>
+                            <td>{{ele.role}}</td>
+                            <td>
+                                <p>{{ele.price | currency}}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="row">
+                <div *ngIf="roleAmountPieChartData.length > 0">
+                    <google-chart [data]="pieChartAmount"></google-chart>
+                    <div>{{roleAmountPieChartData}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="roleCountPieChartData.length > 0">
+                    <google-chart [data]="pieChartCount"></google-chart>
+                    <div>{{roleCountPieChartData}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

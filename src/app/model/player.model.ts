@@ -3,4 +3,5 @@ export interface Player{
     name:string;
     role:string;
     price:number;
+    tid:number;
 }
